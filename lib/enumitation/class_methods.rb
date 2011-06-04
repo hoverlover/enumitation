@@ -1,0 +1,39 @@
+module Enumitation
+  module ClassMethods
+
+    def self.extended(base)
+      class << base
+        attr_accessor :enumitation_values
+      end
+
+      base.enumitation_values = {}
+    end
+
+    def enumitation(attribute, values)
+      enumitation_values[attribute] = Array(values)
+      add_inclusion_validation(attribute, values)
+    end
+
+    def select_options_for(attribute)
+      return [] if enumitation_values.empty?
+
+      enumitation_values[attribute].map do |val|
+        [display_value(attribute, val), val]
+      end
+    end
+
+    private
+
+    def display_value(attribute, val)
+      # Try looking up using i18n.  If nothing found, just return the val.
+
+      I18n.t(val,
+             :scope => "enumitation.models.#{self.name.underscore}.#{attribute.to_s.underscore}",
+             :default => val)
+    end
+
+    def add_inclusion_validation(attribute, values)
+      self.validates_inclusion_of attribute, :in => values
+    end
+  end
+end
