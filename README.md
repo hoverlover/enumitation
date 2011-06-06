@@ -81,7 +81,11 @@ all that work when you can get it from a one-liner?
 True, but the ones I found either didn't fit my needs or they did so much more than I needed.
 I wanted something that fit my needs exactly and nothing more.
 
+## Testing
+
+    bundle exec rspec spec
+
 ## Contributing
 
 If you think Enumitation could be better, fork away and send a pull
-request!
+request!  Please make sure to include specs for your changes.
