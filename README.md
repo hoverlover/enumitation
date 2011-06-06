@@ -13,8 +13,7 @@ join table to contain the values and a foreign key constraint were overkill?  We
 could opt for an enum field, but maybe your DBMS doesn't support enums.  Or maybe it does,
 but you just aren't in the mood for an enum field today.
 
-Also, do you need to provide these values for options in a select field
-in a form?
+Also, do you need to provide these values as options in a select form field?
 
 Enumitation exists to allow restrictions on ActiveRecord attribute values without
 the need for a join table or enum field, while also providing those values for
