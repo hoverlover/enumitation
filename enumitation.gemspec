@@ -18,6 +18,11 @@ DESC
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.add_development_dependency('rspec', '> 2')
+  s.add_development_dependency('rr', '>= 1.0.2')
+  s.add_development_dependency('activerecord', '~> 3')
+  s.add_development_dependency('ap')
+  s.add_development_dependency('ruby-debug19')
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 end
