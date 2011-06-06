@@ -31,12 +31,16 @@ describe Enumitation do
 
     context "when label translation is present" do
       before do
-        stub(I18n).t.with_any_args do |*args|
-          val = args.first
-          if val == '1'
-            'one'
-          elsif val == '2'
-            'two'
+        %w[1 2].each do |num|
+          mock(I18n).t(num,
+                       :scope => "enumitation.models.my_model.number",
+                       :default => num) do
+
+            if num == '1'
+              'one'
+            elsif num == '2'
+              'two'
+            end
           end
         end
       end
