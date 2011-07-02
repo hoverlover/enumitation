@@ -2,16 +2,14 @@ module Enumitation
   module ClassMethods
 
     def self.extended(base)
+      # If we've already been extended, don't do it again
+      return if defined? base.enumitation_values
+
       class << base
         attr_accessor :enumitation_values
       end
 
       base.enumitation_values = {}
-    end
-
-    def enumitation(attribute, values)
-      enumitation_values[attribute] = Array(values)
-      add_inclusion_validation(attribute, values)
     end
 
     def select_options_for(attribute)

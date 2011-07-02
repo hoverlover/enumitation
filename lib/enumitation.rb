@@ -1,10 +1,12 @@
 module Enumitation
   autoload :ClassMethods, 'enumitation/class_methods'
 
-  ActiveRecord::Base.class_eval do
-    def self.inherited(subclass)
-      subclass.extend ClassMethods
-      super
+  ActiveRecord::Base.instance_eval do
+    def enumitation(attribute, values)
+      extend ClassMethods
+
+      self.enumitation_values[attribute] = Array(values)
+      add_inclusion_validation(attribute, values)
     end
   end
 end
